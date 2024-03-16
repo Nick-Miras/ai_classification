@@ -5,7 +5,7 @@ from dataclass import TypeOfWaste
 from PIL import Image
 from ultralytics import YOLO
 from exceptions import NULLResult, InvalidResult
-
+from typing import final
 
 class NodeMcuAIImageHandler:
     def __init__(self, image: Image) -> None:
@@ -25,7 +25,8 @@ class NodeMcuAIImageHandler:
                     return TypeOfWaste.BIODEGRADABLE
                 case _:
                     raise InvalidResult()
-
+    
+    @final
     def get_type_of_waste(self) -> TypeOfWaste:
         return self._determine_type_of_waste()
 
