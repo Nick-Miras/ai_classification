@@ -1,3 +1,0 @@
-- [ ] AI Backend
-- [ ] NodeMCU Http Client
-- [ ] ESPNOW
