@@ -1,6 +1,5 @@
-from http.server import HTTPServer
-from server import start_server
+from handlers.flask import main
 
 
 if __name__ == '__main__':
-  start_server()
+    main()

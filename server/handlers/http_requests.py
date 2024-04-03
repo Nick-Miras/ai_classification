@@ -1,28 +1,26 @@
 """
 HTTP server for receiving images from ESP32 Camera
 """
-from http.server import BaseHTTPRequestHandler, HTTPServer
-from PIL import Image
-import io
 from abc import ABC, abstractmethod
-from image_handler import NodeMcuAIImageHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import io
 import json
 
-
-PORT = 8000
+from image_handler import NodeMcuAIImageHandler
+from handlers import PORT
 
 
 class ServerCommands(ABC):
 
     @staticmethod
     @abstractmethod
-    def execute(handler: BaseHTTPRequestHandler):
-      ...
+    def execute(handler):
+        ...
 
 
 class PostCommand(ServerCommands):
     @staticmethod
-    def execute(handler: BaseHTTPRequestHandler):
+    def execute(handler):
         # Get the content length from the header
         content_length = int(handler.headers.get('Content-Length'))
 
@@ -31,8 +29,7 @@ class PostCommand(ServerCommands):
 
         # process image
         try:
-            image_handler = NodeMcuAIImageHandler(Image.open(io.BytesIO(image_data)))
-            image_handler.execute()
+            image_handler = NodeMcuAIImageHandler(io.BytesIO(image_data))
 
             handler.send_response(200)
             handler.send_header('Content-Type', 'application/json')
@@ -45,11 +42,11 @@ class PostCommand(ServerCommands):
     
 class ImageHandler(BaseHTTPRequestHandler):
 
-  def do_POST(self):
-    PostCommand.execute(self)
+    def do_POST(self):
+        PostCommand.execute(self)
 
 
-def start_server():
+def start_https_requests_server():
     print(f"Server listening on port {PORT}")
     server_address = ('', PORT)
     httpd = HTTPServer(server_address, ImageHandler)
