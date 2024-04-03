@@ -1,5 +1,6 @@
 #include <WebServer.h>
 #include <esp32cam.h>
+#include <WiFi.h>
 
 WebServer server(80);
 
