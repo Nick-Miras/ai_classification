@@ -1,9 +1,20 @@
 from flask import Flask, request, make_response
 import io
-
-from image_handler import NodeMcuAIImageHandler
+from PIL import Image
 
 app = Flask(__name__)
+
+
+@app.route('/receive_framebuffer', methods=['POST'])
+def receive_framebuffer():
+    # Get the raw data from the request
+    framebuffer_data = request.get_data()
+    try:
+        image = Image.open(io.BytesIO(framebuffer_data))
+        image.save('file.jpg')
+        return make_response({'message': 'Image Received'}, 200)
+    except Exception as e:
+        return make_response({'message': e}, 400)
 
 
 @app.route('/api/upload', methods=['POST'])
@@ -21,11 +32,11 @@ def upload_image():
         return make_response({'message': 'No selected file'}, 400)
 
     try:
-        image_handler = NodeMcuAIImageHandler(image)
-        return make_response({'message': image_handler.get_type_of_waste().value}, 200)
+        image.save('file.jpg')
+        return make_response({'message': 'Image Received'}, 200)
     except Exception as e:
         return make_response({'message': e}, 400)
 
 
-def main():
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')

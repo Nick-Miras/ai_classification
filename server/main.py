@@ -1,4 +1,4 @@
-from handlers.flask import main
+from handlers.flask_handler import main
 
 
 if __name__ == '__main__':

@@ -62,7 +62,7 @@ bool isWasteInFrontOfCamera() {
 // }
 
 void throwWasteIntoBiodegradableBin() {
-    gSegregatorServo.write(250);
+    gSegregatorServo.write(160);
 }
 
 void throwWasteIntoNonBiodegradableBin() {
