@@ -12,3 +12,7 @@ class TypeOfWasteFromModel(Enum):
 class TypeOfWaste(Enum):
     BIODEGRADABLE = 'Biodegradable'
     NON_BIODEGRADABLE = 'Non-Biodegradable'
+
+
+def is_waste_biodegradable(type_of_waste: TypeOfWaste) -> bool:
+    return type_of_waste is TypeOfWaste.BIODEGRADABLE

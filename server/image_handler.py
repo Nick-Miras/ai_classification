@@ -9,14 +9,12 @@ from typing import final
 
 
 class NodeMcuAIImageHandler:
-    def __init__(self, image) -> None:
-        self.image: Image = Image.open(image)
+    def __init__(self, image: Image) -> None:
+        self.image: Image = image
 
     def _determine_type_of_waste(self) -> TypeOfWaste:
         """Uses AI To Determine Waste"""
-        if YoloV8Model.predict(self.image) is True:
-            return TensorFlowModel.predict(self.image)
-        raise NULLResult()
+        return TensorFlowModel.predict(self.image)
     
     @final
     def get_type_of_waste(self) -> TypeOfWaste:
