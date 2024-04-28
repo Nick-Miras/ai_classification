@@ -1,12 +1,12 @@
 {
 	"folders": [
-		{
-			"path": "esp-32-cam"
-		},
-		{
-			"path": "nodemcu"
-		}
-	],
+        {
+            "path": "esp-32-cam"
+        },
+        {
+            "path": "nodemcu"
+        }
+    ],
     "settings": {
         "files.associations": {
             "*.tcc": "cpp",

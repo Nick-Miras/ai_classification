@@ -7,10 +7,12 @@
 
 #define CHANNEL 1
 
-const char* ssid = "Miras Family 2.5"; //TODO: Change
-const char* password = "dingyenajjanjan18763"; //TODO: Change
-const char* apiUrl = "http://192.168.254.103:8000/upload"; // LOCAL ADDRESS FOR TESTING
-// const char* apiUrl = "http://172.83.14.130:8000/upload"; // REMOTE SERVER ADDRESS
+// const char* ssid = "Miras Family 2.5";
+// const char* password = "dingyenajjanjan18763";
+const char* ssid = "SABAKADIHA 2.4";
+const char* password = "Neyney2008@";
+// const char* apiUrl = "http://192.168.254.103:8000/upload"; // LOCAL ADDRESS FOR TESTING
+const char* apiUrl = "http://172.83.14.130:8000/upload"; // REMOTE SERVER ADDRESS
 const uint8_t PEER[]{0x4A, 0x55, 0x19, 0xC8, 0x6B, 0x21};
 
 static bool isWasteDetected;

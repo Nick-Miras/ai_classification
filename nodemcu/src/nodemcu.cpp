@@ -3,13 +3,15 @@
 #include "ESP8266_ISR_Servo.h"
 #include <ESP8266WiFi.h>
 
-const char* ssid = "Miras Family 2.5";
-const char* password = "dingyenajjanjan18763";
+const char* ssid = "SABAKADIHA 2.4";
+const char* password = "Neyney2008@";
 const uint8_t PEER[]{0x30, 0xC6, 0xF7, 0x30, 0xBB, 0x39}; // MAC Address Of ESP32
 
 static short servoIndex = -1;
 static bool isWasteBiodegradable;
 static bool isMessageReceived = false;
+static bool isAwaitingSegregation = false;
+static bool isConnectedToWifi;
 
 bool getInfraredSensorStatus() {
     int sensorStatus = digitalRead(INFRARED_SENSOR_PIN);
@@ -21,7 +23,6 @@ bool getInfraredSensorStatus() {
 }
 
 bool isWasteInFrontOfCamera() {
-    // use infrared sensor
     if (getInfraredSensorStatus() == true) {
         return true;
     } else {
@@ -94,36 +95,54 @@ void printMacAddress() {
     Serial.println();
 }
 
+void blinkLED() {
+  digitalWrite(LED_BUILTIN, HIGH); // OFF
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW); // ON
+  delay(1000);
+  digitalWrite(LED_BUILTIN, HIGH); // OFF
+  delay(500);
+}
+
 void setup() {
     Serial.begin(115200);
     Serial.println();
 
+    setupServoPins();
+    pinMode(INFRARED_SENSOR_PIN, INPUT);
+    pinMode(LED_BUILTIN, OUTPUT);
+
     WiFi.persistent(false);
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
-    WiFi.softAP("ESPNOW", nullptr, 3);
-    WiFi.softAPdisconnect(false);
-
-    printMacAddress();
-
-    setupESPNOW();
-
-    setupServoPins();
-    pinMode(INFRARED_SENSOR_PIN, INPUT);
+    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+        Serial.printf("WiFi failure; Status: %d\n", WiFi.status());
+        isConnectedToWifi = false;
+    } else {
+        // WiFi Connection Successful
+        Serial.printf("WiFi success; Status: %d\n", WiFi.status());
+        isConnectedToWifi = true;
+        WiFi.softAP("ESPNOW", nullptr, 3);
+        WiFi.softAPdisconnect(false);
+        printMacAddress();
+        setupESPNOW();
+    }
+    blinkLED();
 }   
 
 void checkForWastePresenceAndInformESP32() {
     if (isWasteInFrontOfCamera() == true) {
-        delay(1000); // CHANGE DELAY
         Serial.println("Waste In Front Of Camera: True");
         byte data[1];
         data[0] = true;
-        if (WifiEspNow.send(PEER, data, sizeof(data)) == true) {
-            Serial.println("Successfully Informed PEER");
-        } else {
-            Serial.println("Failed To Inform Peer");
+        if (isAwaitingSegregation == false) {
+            if (WifiEspNow.send(PEER, data, sizeof(data)) == true) {
+                isAwaitingSegregation = true;
+                Serial.println("Successfully Informed PEER");
+            } else {
+                Serial.println("Failed To Inform Peer");
+            }
         }
-
     } else {
         Serial.println("Waste In Front Of Camera: False");
     }
@@ -140,12 +159,28 @@ void segregateWaste() {
         }
         isMessageReceived = false;
         delay(5000);
+        isAwaitingSegregation = false;
         setServoToNeutralPosition();
     }
 }
 
+void testServos() {
+    if (isWasteInFrontOfCamera() == true) {
+        throwWasteIntoBiodegradableBin();
+        delay(2500);
+        throwWasteIntoNonBiodegradableBin();
+        delay(2500);
+        setServoToNeutralPosition();
+        delay(2500);
+    }
+}
+
 void loop() {
-    checkForWastePresenceAndInformESP32();
-    segregateWaste();
+    if (isConnectedToWifi == true) {
+        checkForWastePresenceAndInformESP32();
+        segregateWaste();
+    } else {
+        testServos();
+    }
     delay(1000);
 }
