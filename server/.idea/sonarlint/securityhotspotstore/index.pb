@@ -27,3 +27,8 @@ G
 test_fastapi_handler.py,3/b/3b290c7ce6c09a0ccd5200868ffa5f5b3318307f
 K
 handlers/fastapi_handler.py,b/8/b87ea0cee5aca43b89133dde347f3f41a46e30cd
+@
+requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
