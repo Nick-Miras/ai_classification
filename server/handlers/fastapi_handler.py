@@ -1,21 +1,3 @@
-from fastapi import FastAPI, HTTPException, Request
-from PIL import Image
-import io
-
-from dataclass import TypeOfWaste, is_waste_biodegradable
-from exceptions import BaseWasteClassificationException
-from image_handler import NodeMcuAIImageHandler
-
-app = FastAPI()
-
-
-@app.post("/upload")
-async def create_file(request: Request):
-    try:
-        raw_bytes = await request.body()
-        image = Image.open(io.BytesIO(raw_bytes))
-        image_handler = NodeMcuAIImageHandler(image)
-        type_of_waste: TypeOfWaste = image_handler.get_type_of_waste()
-        return {'message': {"isWasteBiodegradable": is_waste_biodegradable(type_of_waste)}}
-    except BaseWasteClassificationException as e:
-        raise HTTPException(400, e.error_message)
+version https://git-lfs.github.com/spec/v1
+oid sha256:3e5bc0ad924472248440c63c2bf6e04d2158f8f82cb286a28b07a007c496ba47
+size 744

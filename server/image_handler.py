@@ -1,21 +1,3 @@
-"""
-Mediator For Image Handling
-"""
-from ai import TensorFlowModel, YoloV8Model
-from dataclass import TypeOfWaste
-from PIL import Image
-from exceptions import NULLResult
-from typing import final
-
-
-class NodeMcuAIImageHandler:
-    def __init__(self, image: Image) -> None:
-        self.image: Image = image
-
-    def _determine_type_of_waste(self) -> TypeOfWaste:
-        """Uses AI To Determine Waste"""
-        return TensorFlowModel.predict(self.image)
-    
-    @final
-    def get_type_of_waste(self) -> TypeOfWaste:
-        return self._determine_type_of_waste()
+version https://git-lfs.github.com/spec/v1
+oid sha256:d59f42cff9563eea2775d1f642c8fd1b58d8f58fde665c45abcb16eece450618
+size 565

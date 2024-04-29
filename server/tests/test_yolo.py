@@ -1,17 +1,3 @@
-from ultralytics import YOLO
-from PIL import Image
-
-model = YOLO('../models/yolov8m-seg.pt') 
-result, = model.predict(Image.open('image.jpg'), save=False, stream=True)
-print(result)
-
-if (probabilities := result.probs) is None:
-    raise ValueError('NULL Result')
-else:
-    match(result.probs.top1):
-        case 0 | 1 | 3:
-            print('Non-Biodegradable')
-        case 2 | 4:
-            print('Biodegradable')
-        case _:
-            raise ValueError('Invalid Waste Type')
+version https://git-lfs.github.com/spec/v1
+oid sha256:4138db5b8a864d443f871714eb954957d9bdb169b19cdb1d5174cb2ab8ba6698
+size 484

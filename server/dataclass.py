@@ -1,18 +1,3 @@
-from enum import Enum
-
-
-class TypeOfWasteFromModel(Enum):
-    GLASS = 0
-    METAL = 1
-    PAPER = 2
-    PLASTIC = 3
-    WASTE = 4
-
-
-class TypeOfWaste(Enum):
-    BIODEGRADABLE = 'Biodegradable'
-    NON_BIODEGRADABLE = 'Non-Biodegradable'
-
-
-def is_waste_biodegradable(type_of_waste: TypeOfWaste) -> bool:
-    return type_of_waste is TypeOfWaste.BIODEGRADABLE
+version https://git-lfs.github.com/spec/v1
+oid sha256:b3a94efd3e48cb195839141f0461eb2c2cb637e9ce1a98d663a5ef4580453032
+size 357

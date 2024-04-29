@@ -1,21 +1,3 @@
-from flask import Flask, request, make_response
-import io
-
-from image_handler import NodeMcuAIImageHandler
-
-app = Flask(__name__)
-
-
-@app.route('/receive_framebuffer', methods=['POST'])
-def receive_framebuffer():
-    # Get the raw data from the request
-    framebuffer_data = request.get_data()
-    try:
-        image_handler = NodeMcuAIImageHandler(io.Bytes(framebuffer_data))
-        return make_response({'message': image_handler.get_type_of_waste().value}, 200)
-    except Exception as e:
-        return make_response({'message': e}, 400)
-
-
-def main():
-    app.run(debug=True)
+version https://git-lfs.github.com/spec/v1
+oid sha256:2d69a598cd2fa464981de2928f16dadcab8ae29a73c47eacfc42bc9caf397cc0
+size 580

@@ -1,7 +1,3 @@
-{
-    "configuration": "CPUFreq=240,FlashMode=qio,PartitionScheme=huge_app,FlashFreq=80,DebugLevel=none,EraseFlash=none",
-    "board": "esp32:esp32:esp32cam",
-    "port": "/dev/ttyUSB0",
-    "programmer": "esptool",
-    "sketch": "esp-32-cam.ino"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:338bb92ec01e5c6c2cd3befde9664ebd8cd03ee21c5b60758096b949dc736578
+size 248

@@ -1,18 +1,3 @@
-from fastapi import FastAPI, HTTPException, Request
-from PIL import Image
-import io
-
-from exceptions import BaseWasteClassificationException
-
-app = FastAPI()
-
-
-@app.post("/upload")
-async def create_file(request: Request):
-    try:
-        raw_bytes = await request.body()
-        image = Image.open(io.BytesIO(raw_bytes))
-        image.save("tests/file.jpg")
-        return {'message': {"isWasteBiodegradable": True}}
-    except BaseWasteClassificationException as e:
-        raise HTTPException(400, e.error_message)
+version https://git-lfs.github.com/spec/v1
+oid sha256:b45b5a26a95162652a654d9a68aecce6cb2b359fbcf4610a2825d21c84970e51
+size 518
