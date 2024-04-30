@@ -9,8 +9,7 @@ import tensorflow as tf
 
 class AIModel(ABC):
     def __init__(self):
-        path = str(self.model_path)
-        self.model = tf.keras.models.load_model('models/resnet50.keras')
+        self.model = tf.keras.models.load_model(self.model_path)
 
     @property
     @abstractmethod
@@ -36,13 +35,12 @@ class BinaryClassificationCNNModel(AIModel, ABC):
 
 
 class Resnet50(BinaryClassificationCNNModel):
-
     @property
     def model_path(self) -> str:
-        return r'models/resnet50.keras'
+        return 'models/resnet50.keras'
 
 
 class Resnet152(BinaryClassificationCNNModel):
     @property
     def model_path(self) -> str:
-        return r'models/resnet152.keras'
+        return 'models/resnet152.keras'
