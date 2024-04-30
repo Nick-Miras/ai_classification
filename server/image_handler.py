@@ -14,6 +14,11 @@ class NodeMcuAIImageHandler:
 
     def _determine_type_of_waste(self) -> TypeOfWaste:
         """Uses AI To Determine Waste"""
+        import datetime
+        import pytz
+        date_string = datetime.datetime.now(pytz.timezone('Asia/Manila'))
+        formatted_date_string = date_string.strftime("%m%d%y-%H%MH")
+        self.image.save(f"images/{formatted_date_string}.png")
         return self.model_handler.predict(self.image)
     
     @final
