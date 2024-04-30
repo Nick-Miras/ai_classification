@@ -30,8 +30,9 @@ class BinaryClassificationCNNModel(AIModel, ABC):
             :TypeOfWaste: classification of the input Image.
         """
         img_array = tf.keras.preprocessing.image.img_to_array(data)
-        img_array = tf.expand_dims(img_array, 0)
-        predictions = self.model.predict(img_array)
+        img_array_resized = tf.image.resize(img_array, (224, 224), tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+        img = tf.expand_dims(img_array_resized, 0)
+        predictions = self.model.predict(img)
         return TypeOfWaste(CLASSES[int(tf.round(predictions[0]).numpy()[0])])
 
 

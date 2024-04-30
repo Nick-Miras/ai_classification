@@ -9,7 +9,7 @@ from typing import final
 
 class NodeMcuAIImageHandler:
     def __init__(self, image: Image, model_handler: AIModel) -> None:
-        self.image: Image = image.resize((224, 224))
+        self.image: Image = image
         self.model_handler = model_handler
 
     def _determine_type_of_waste(self) -> TypeOfWaste:
