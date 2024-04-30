@@ -7,7 +7,7 @@ from PIL import Image
 app = FastAPI()
 
 
-@app.post('/uploads')
+@app.post('/upload')
 async def process_image(request: Request):
     # Get the raw data from the request
     raw_bytes = await request.body()
