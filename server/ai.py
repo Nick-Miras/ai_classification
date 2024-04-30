@@ -38,10 +38,10 @@ class Resnet50(BinaryClassificationCNNModel):
 
     @property
     def model_path(self) -> str:
-        return f"{os.getcwd()}/models/resnet50.keras"
+        return "models/resnet50.keras"
 
 
 class Resnet152(BinaryClassificationCNNModel):
     @property
     def model_path(self) -> str:
-        return f"{os.getcwd()}/models/resnet152.keras"
+        return "models/resnet152.keras"
