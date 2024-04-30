@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:496d0355a8bfd76e3f8a2bd4f908237a9dd98e8866cc783a5a63f4df43f389fa
-size 140
+{
+    "editor.tabSize": 2,
+    "files.associations": {
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
+    }
+}

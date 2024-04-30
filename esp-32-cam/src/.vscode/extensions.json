@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:22538b10f603d7965988cff41d1a6c85b2766f2142fe909375c55175d11101fd
-size 73
+{
+    "recommendations": [
+        "vsciot-vscode.vscode-arduino"
+    ]
+}

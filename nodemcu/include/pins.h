@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e40cbdb721db1743981e39346d7c977ef6c7615ed61c6cd39b9db2cd5b07f138
-size 140
+#define ULTRASONIC_SENSOR_TRIGGER_PIN 12
+#define ULTRASONIC_SENSOR_ECHO_PIN 13
+#define INFRARED_SENSOR_PIN 5
+#define SEGRAGATOR_SERVO_PIN 4
