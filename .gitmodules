@@ -9,4 +9,3 @@
 [submodule "nodemcu"]
 	path = nodemcu
 	url = https://github.com/Nick-Miras/ai-classification-nodemcu
-
