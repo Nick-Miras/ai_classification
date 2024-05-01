@@ -1,5 +1,0 @@
-tensorflow
-ultralytics
-flask
-fastapi
-pillow
