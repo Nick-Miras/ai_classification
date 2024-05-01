@@ -1,10 +1,10 @@
 [submodule "server"]
 	path = server
-    url = https://github.com/Nick-Miras/ai-classification-server
+	url = https://github.com/Nick-Miras/ai-classification-server
 
 [submodule "esp-32-cam"]
 	path = esp-32-cam
-    url = https://github.com/Nick-Miras/ai-classification-esp32
+	url = https://github.com/Nick-Miras/ai-classification-esp32
 
 [submodule "nodemcu"]
 	path = nodemcu
